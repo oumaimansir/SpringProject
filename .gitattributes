@@ -1,0 +1,13 @@
+# Set all files to use LF by default
+* text=auto eol=lf
+
+# Explicitly treat certain files as text with LF
+*.java text eol=lf
+*.xml text eol=lf
+*.properties text eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+# Treat binary files as binary (no line ending conversion)
+*.jar binary
+*.class binary
