@@ -1,33 +1,32 @@
-HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+# Backend (Spring Boot)
+Backend/target/
+Backend/.mvn/
+Backend/mvnw
+Backend/mvnw.cmd
+*.jar
 
-### STS ###
-.apt_generated
+# Frontend (Angular)
+Frontend/gestionProdfrontend/node_modules/
+Frontend/gestionProdfrontend/dist/
+Frontend/gestionProdfrontend/.angular/
+Frontend/gestionProdfrontend/*.log
+
+# Docker
+*.tar
+*.log
+.env
+
+# IDE and Editor
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
 .classpath
-.factorypath
 .project
-.settings
+.settings/
 .springBeans
 .sts4-cache
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
-.vscode/
+# General
+.DS_Store
