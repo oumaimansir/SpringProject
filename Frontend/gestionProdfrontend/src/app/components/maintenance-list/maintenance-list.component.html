@@ -1,0 +1,30 @@
+<h2>Maintenances</h2>
+<div *ngIf="errorMessage" style="color: red;">
+  {{ errorMessage }}
+</div>
+<button [routerLink]="['/maintenance-form']">Add Maintenance</button>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Machine</th>
+      <th>Technicien</th>
+      <th>Date</th>
+      <th>Type</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let maintenance of maintenances">
+      <td>{{ maintenance.id }}</td>
+      <td>{{ getMachineName(maintenance.machineId) }}</td>
+      <td>{{ getTechnicienName(maintenance.technicienId) }}</td>
+      <td>{{ maintenance.date }}</td>
+      <td>{{ maintenance.type }}</td>
+      <td>
+        <button [routerLink]="['/maintenance-form', maintenance.id]">Edit</button>
+        <button (click)="deleteMaintenance(maintenance.id!)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

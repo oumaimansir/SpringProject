@@ -1,0 +1,31 @@
+import { Routes } from '@angular/router';
+import { OrdreFabricationListComponent } from './components/ordre-fabrication-list/ordre-fabrication-list.component';
+import { OrdreFabricationFormComponent } from './components/ordre-fabrication-form/ordre-fabrication-form.component';
+import { ProduitListComponent } from './components/produit-list/produit-list.component';
+import { ProduitFormComponent } from './components/produit-form/produit-form.component';
+import { MachineListComponent } from './components/machine-list/machine-list.component';
+import { MachineFormComponent } from './components/machine-form/machine-form.component';
+import { TechnicienListComponent } from './components/technicien-list/technicien-list.component';
+import { TechnicienFormComponent } from './components/technicien-form/technicien-form.component';
+import { MaintenanceListComponent } from './components/maintenance-list/maintenance-list.component';
+import { MaintenanceFormComponent } from './components/maintenance-form/maintenance-form.component';
+import { AppComponent } from './app.component';
+import { AccueilComponent } from './components/accueil/accueil.component';
+export const routes: Routes = [
+    { path: '', component: AccueilComponent },
+  { path: 'ordres', component: OrdreFabricationListComponent },
+  { path: 'ordre-fabrication-form', component: OrdreFabricationFormComponent },
+  { path: 'ordre-fabrication-form/:id', component: OrdreFabricationFormComponent },
+  { path: 'produits', component: ProduitListComponent },
+  { path: 'produit-form', component: ProduitFormComponent },
+  { path: 'produit-form/:id', component: ProduitFormComponent },
+  { path: 'machines', component: MachineListComponent },
+  { path: 'machine-form', component: MachineFormComponent },
+  { path: 'machine-form/:id', component: MachineFormComponent },
+  { path: 'techniciens', component: TechnicienListComponent },
+  { path: 'technicien-form', component: TechnicienFormComponent },
+  { path: 'technicien-form/:id', component: TechnicienFormComponent },
+  { path: 'maintenances', component: MaintenanceListComponent },
+  { path: 'maintenance-form', component: MaintenanceFormComponent },
+  { path: 'maintenance-form/:id', component: MaintenanceFormComponent }
+];

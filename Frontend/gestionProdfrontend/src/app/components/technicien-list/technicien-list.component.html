@@ -1,0 +1,25 @@
+<h2>Techniciens</h2>
+<button routerLink="/technicien-form">Add Technicien</button>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Compétences</th>
+      <th>Machine Assignée</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let technicien of techniciens">
+      <td>{{ technicien.id }}</td>
+      <td>{{ technicien.nom }}</td>
+      <td>{{ technicien.competences }}</td>
+      <td>{{ technicien.machineAssigneeNom }}</td>
+      <td>
+        <button [routerLink]="['/technicien-form', technicien.id!]">Edit</button>
+        <button (click)="deleteTechnicien(technicien.id!)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

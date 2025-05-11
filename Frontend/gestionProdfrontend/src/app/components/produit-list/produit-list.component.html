@@ -1,0 +1,27 @@
+<h2>Produits</h2>
+<button routerLink="/produit-form">Add Produit</button>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Type</th>
+      <th>Stock</th>
+      <th>Fournisseur</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let produit of produits">
+      <td>{{ produit.id }}</td>
+      <td>{{ produit.nom }}</td>
+      <td>{{ produit.type }}</td>
+      <td>{{ produit.stock }}</td>
+      <td>{{ produit.fournisseur }}</td>
+      <td>
+        <button [routerLink]="['/produit-form', produit.id!]">Edit</button>
+        <button (click)="deleteProduit(produit.id!)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

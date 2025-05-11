@@ -1,0 +1,55 @@
+<h2>{{ isEdit ? 'Edit Maintenance' : 'Add Maintenance' }}</h2>
+<div *ngIf="errorMessage" class="error">
+  {{ errorMessage }}
+</div>
+<form [formGroup]="maintenanceForm" (ngSubmit)="onSubmit()" class="maintenance-form">
+  <div class="form-group">
+    <label for="machineId">Machine:</label>
+    <select id="machineId" formControlName="machineId" required>
+      <option value="">Select a Machine</option>
+      <option *ngFor="let machine of machines" [value]="machine.id">
+        {{ machine.nom || machine.id }}
+      </option>
+    </select>
+    <div *ngIf="maintenanceForm.get('machineId')?.invalid && maintenanceForm.get('machineId')?.touched" class="error">
+      Machine is required.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="technicienId">Technicien:</label>
+    <select id="technicienId" formControlName="technicienId" required>
+      <option value="">Select a Technicien</option>
+      <option *ngFor="let technicien of techniciens" [value]="technicien.id">
+        {{ technicien.nom || technicien.id }}
+      </option>
+    </select>
+    <div *ngIf="maintenanceForm.get('technicienId')?.invalid && maintenanceForm.get('technicienId')?.touched" class="error">
+      Technicien is required.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="date">Date:</label>
+    <input id="date" type="date" formControlName="date" required>
+    <div *ngIf="maintenanceForm.get('date')?.invalid && maintenanceForm.get('date')?.touched" class="error">
+      Date is required.
+    </div>
+  </div>
+<div class="form-group">
+    <label for="type">Maintenance Type:</label>
+    <select id="type" formControlName="type" required>
+      <option value="">Select a Type</option>
+      <option *ngFor="let type of maintenanceTypes" [value]="type">
+        {{ type }}
+      </option>
+    </select>
+    <div *ngIf="maintenanceForm.get('type')?.invalid && maintenanceForm.get('type')?.touched" class="error">
+      Maintenance type is required.
+    </div>
+  </div>
+  <div class="form-actions">
+    <button type="submit" [disabled]="!maintenanceForm.valid">
+      {{ isEdit ? 'Update' : 'Create' }}
+    </button>
+    <button type="button" (click)="navigateToMaintenances()">Cancel</button>
+  </div>
+</form>

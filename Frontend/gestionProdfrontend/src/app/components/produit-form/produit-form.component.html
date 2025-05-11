@@ -1,0 +1,46 @@
+<h2>{{ isEdit ? 'Edit Produit' : 'Add Produit' }}</h2>
+<div *ngIf="errorMessage" class="error">
+  {{ errorMessage }}
+</div>
+<div *ngIf="successMessage" class="success">
+  {{ successMessage }}
+</div>
+<form [formGroup]="produitForm" (ngSubmit)="onSubmit()" class="produit-form">
+  <div class="form-group">
+    <label for="nom">Nom:</label>
+    <input id="nom" formControlName="nom" required>
+    <div *ngIf="produitForm.get('nom')?.invalid && produitForm.get('nom')?.touched" class="error">
+      Nom is required.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="type">Type:</label>
+    <select id="type" formControlName="type" required>
+      <option value="">Select a Type</option>
+      <option *ngFor="let type of typeOptions" [value]="type">
+        {{ type }}
+      </option>
+    </select>
+    <div *ngIf="produitForm.get('type')?.invalid && produitForm.get('type')?.touched" class="error">
+      Type is required.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="stock">Stock:</label>
+    <input id="stock" type="number" formControlName="stock" required>
+    <div *ngIf="produitForm.get('stock')?.invalid && produitForm.get('stock')?.touched" class="error">
+      Stock is required and must be 0 or greater.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="fournisseur">Fournisseur:</label>
+    <input id="fournisseur" formControlName="fournisseur" required>
+    <div *ngIf="produitForm.get('fournisseur')?.invalid && produitForm.get('fournisseur')?.touched" class="error">
+      Fournisseur is required.
+    </div>
+  </div>
+  <div class="form-actions">
+    <button type="submit" [disabled]="!produitForm.valid">{{ isEdit ? 'Update' : 'Create' }}</button>
+    <button type="button" (click)="navigateToProduits()">Cancel</button>
+  </div>
+</form>

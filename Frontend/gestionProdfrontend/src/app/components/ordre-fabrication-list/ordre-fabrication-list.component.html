@@ -1,0 +1,33 @@
+<h2>Ordres de Fabrication</h2>
+<div *ngIf="errorMessage" style="color: red;">
+  {{ errorMessage }}
+</div>
+<button routerLink="/ordre-fabrication-form">Add Order</button>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Produit</th>
+      <th>Quantité</th>
+      <th>Date</th>
+      <th>Machine</th>
+      <th>Statut</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ordre of ordres">
+      <td>{{ ordre.id }}</td>
+      <td>{{ getProduitName(ordre.produitId) }}</td>
+      <td>{{ ordre.quantite }}</td>
+      <td>{{ ordre.date }}</td>
+      <td>{{ getMachineName(ordre.machineId) }}</td>
+      <td>{{ ordre.statut }}</td>
+      <td>
+        <button [routerLink]="['/ordre-fabrication-form', ordre.id!]">Edit</button>
+        <button (click)="deleteOrdre(ordre.id!)">Delete</button>
+        <button (click)="trackStatus(ordre.id!)">Track Status</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,65 @@
+<h2>{{ isEdit ? 'Edit Ordre de Fabrication' : 'Add Ordre de Fabrication' }}</h2>
+<div *ngIf="errorMessage" class="error">
+  {{ errorMessage }}
+</div>
+<div *ngIf="successMessage" class="success">
+  {{ successMessage }}
+</div>
+<form [formGroup]="ordreForm" (ngSubmit)="onSubmit()" class="ordre-form">
+  <div class="form-group">
+    <label for="produitId">Produit:</label>
+    <select id="produitId" formControlName="produitId" required>
+      <option value="">Select a Product</option>
+      <option *ngFor="let produit of produits" [value]="produit.id">
+        {{ produit.nom }}
+      </option>
+    </select>
+    <div *ngIf="ordreForm.get('produitId')?.invalid && ordreForm.get('produitId')?.touched" class="error">
+      Product is required.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="quantite">Quantité:</label>
+    <input id="quantite" type="number" formControlName="quantite" required>
+    <div *ngIf="ordreForm.get('quantite')?.invalid && ordreForm.get('quantite')?.touched" class="error">
+      Quantity is required and must be greater than 0.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="date">Date:</label>
+    <input id="date" type="date" formControlName="date" required>
+    <div *ngIf="ordreForm.get('date')?.invalid && ordreForm.get('date')?.touched" class="error">
+      Date is required.
+    </div>
+  </div>
+  <div class="form-group">
+   <label for="machineId">Machine:</label>
+    <select id="machineId" formControlName="machineId" required>
+      <option value="">Select a Machine</option>
+      <option *ngFor="let machine of machines" [value]="machine.id">
+        {{ machine.nom || machine.id }}
+      </option>
+    </select>
+    <div *ngIf="ordreForm.get('machineId')?.invalid && ordreForm.get('machineId')?.touched" class="error">
+      Machine is required.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="statut">Statut:</label>
+    <select id="statut" formControlName="statut" required>
+      <option value="">Select a Status</option>
+      <option *ngFor="let statut of statutOptions" [value]="statut">
+        {{ statut }}
+      </option>
+    </select>
+    <div *ngIf="ordreForm.get('statut')?.invalid && ordreForm.get('statut')?.touched" class="error">
+      Status is required.
+    </div>
+  </div>
+  <div class="form-actions">
+    <button type="submit" [disabled]="!ordreForm.valid">
+      {{ isEdit ? 'Update' : 'Create' }}
+    </button>
+    <button type="button" (click)="navigateToOrdres()">Cancel</button>
+  </div>
+</form>

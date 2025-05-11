@@ -1,0 +1,39 @@
+<h2>{{ isEdit ? 'Edit Machine' : 'Add Machine' }}</h2>
+<div *ngIf="errorMessage" class="error">
+  {{ errorMessage }}
+</div>
+<div *ngIf="successMessage" class="success">
+  {{ successMessage }}
+</div>
+<form [formGroup]="machineForm" (ngSubmit)="onSubmit()" class="machine-form">
+  <div class="form-group">
+    <label for="nom">Nom:</label>
+    <input id="nom" formControlName="nom" required>
+    <div *ngIf="machineForm.get('nom')?.invalid && machineForm.get('nom')?.touched" class="error">
+      Nom is required.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="etat">État:</label>
+    <select id="etat" formControlName="etat" required>
+      <option value="">Select an État</option>
+      <option *ngFor="let etat of etatOptions" [value]="etat">
+        {{ etat }}
+      </option>
+    </select>
+    <div *ngIf="machineForm.get('etat')?.invalid && machineForm.get('etat')?.touched" class="error">
+      État is required.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="maintenanceProchaine">Maintenance Prochaine:</label>
+    <input id="maintenanceProchaine" type="date" formControlName="maintenanceProchaine" required>
+    <div *ngIf="machineForm.get('maintenanceProchaine')?.invalid && machineForm.get('maintenanceProchaine')?.touched" class="error">
+      Maintenance Prochaine is required.
+    </div>
+  </div>
+  <div class="form-actions">
+    <button type="submit" [disabled]="!machineForm.valid">{{ isEdit ? 'Update' : 'Create' }}</button>
+    <button type="button" (click)="navigateToMachines()">Cancel</button>
+  </div>
+</form>

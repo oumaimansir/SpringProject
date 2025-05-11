@@ -1,0 +1,34 @@
+<h2>{{ isEdit ? 'Edit Technicien' : 'Add Technicien' }}</h2>
+<div *ngIf="errorMessage" class="error">
+  {{ errorMessage }}
+</div>
+<div *ngIf="successMessage" class="success">
+  {{ successMessage }}
+</div>
+<form [formGroup]="technicienForm" (ngSubmit)="onSubmit()" class="technicien-form">
+  <div class="form-group">
+    <label for="nom">Nom:</label>
+    <input id="nom" formControlName="nom" required>
+    <div *ngIf="technicienForm.get('nom')?.invalid && technicienForm.get('nom')?.touched" class="error">
+      Nom is required.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="competences">Compétences:</label>
+    <input id="competences" formControlName="competences">
+  </div>
+  <div class="form-group">
+    <label for="machineAssigneeNom">Machine Assignée:</label>
+    <select id="machineAssigneeNom" formControlName="machineAssigneeNom">
+      <option value="">Select a Machine</option>
+      <option *ngFor="let machine of machines" [value]="machine.nom">
+        {{ machine.nom }}
+      </option>
+    </select>
+  </div>
+  <div class="form-actions">
+    <button type="submit" [disabled]="!technicienForm.valid">{{ isEdit ? 'Update' : 'Create' }}</button>
+    <button type="button" (click)="assignMachine()" *ngIf="isEdit">Assign Machine</button>
+    <button type="button" (click)="navigateToTechniciens()">Cancel</button>
+  </div>
+</form>

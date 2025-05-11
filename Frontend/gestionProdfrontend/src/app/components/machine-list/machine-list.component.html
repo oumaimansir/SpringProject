@@ -1,0 +1,25 @@
+<h2>Machines</h2>
+<button routerLink="/machine-form">Add Machine</button>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>État</th>
+      <th>Maintenance Prochaine</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let machine of machines">
+      <td>{{ machine.id }}</td>
+      <td>{{ machine.nom }}</td>
+      <td>{{ machine.etat }}</td>
+      <td>{{ machine.maintenanceProchaine }}</td>
+      <td>
+        <button [routerLink]="['/machine-form', machine.id!]">Edit</button>
+        <button (click)="deleteMachine(machine.id!)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
